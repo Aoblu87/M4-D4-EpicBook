@@ -13,9 +13,55 @@
 </head>
 
 <body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid justify-content-center py-3 mb-3 border-bottom">
+            <a class="navbar-brand" href="#">
+                <img src="assets/ibs_logo.svg" alt="Logo IBS" width="30" height="24">
+            </a>
+            <div class="d-flex col-7">
+                <input id="inputSearch" class="form-control me-2" type="text"
+                    placeholder="Cerca tra milioni di prodotti" aria-label="Search" id="floatingSearch">
+
+
+
+                <button id="buttonSearch" class="btn btn-outline" type="button"><i class="bi bi-search"></i></button>
+            </div>
+            <button type="button" class="btn btn-transparent"><i class="bi bi-suit-heart"></i></button>
+
+            <button class="btn btn-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight"><i class="bi bi-cart2"></i></button>
+            <button type="button" class="btn btn-transparent"><i class="bi bi-person"></i></button>
+
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Il mio carrello</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center border border-0 border-bottom">
+                          A list item
+                          <span class="badge bg-primary rounded-pill">14</span>
+                        </li>
+                        
+                      </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
     <header class="py-3 mb-3 border-bottom">
+
         <nav class="navbar navbar-expand-lg">
+
             <div class="container-fluid justify-content-center">
+
                 <a class="navbar-brand" href="#">
                     <img src="assets/ibs_logo.svg" alt="Logo" width="100" height="34"
                         class="d-inline-block align-text-top">
@@ -52,23 +98,28 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Licenza</a>
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-suit-heart"></i>
+
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">Carica</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#"><i class="bi bi-three-dots"></i></a>
+                            <a class="nav-link" aria-current="page" href="#"><i class="bi bi-person"></i></i></a>
                         </li>
 
 
                     </ul>
                 </div>
 
+
             </div>
         </nav>
-        </div>
     </header>
+
+
     <!----------- SIDEBAR -->
     <sidebar>
 
