@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar">
         <div class="container-fluid justify-content-center py-3 mb-3 border-bottom">
             <a class="navbar-brand" href="#">
                 <img src="assets/ibs_logo.svg" alt="Logo IBS" width="30" height="24">
@@ -24,13 +24,19 @@
 
 
 
-                <button id="buttonSearch" class="btn btn-outline" type="button"><i class="bi bi-search"></i></button>
+                <button id="buttonSearch" class="btn btn-outline" type="button" onclick="search()"><i class="bi bi-search fs-3"></i></button>
             </div>
-            <button type="button" class="btn btn-transparent"><i class="bi bi-suit-heart"></i></button>
+            <button type="button" class="btn btn-transparent"><i class="bi bi-suit-heart fs-3"></i></button>
 
-            <button class="btn btn-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                aria-controls="offcanvasRight"><i class="bi bi-cart2"></i></button>
-            <button type="button" class="btn btn-transparent"><i class="bi bi-person"></i></button>
+            <button class="btn btn-transparent position-relative" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <i class="bi bi-cart2 fs-3"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">
+                    
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+            </button>
+            <button type="button" class="btn btn-transparent"><i class="bi bi-person fs-3"></i></button>
 
 
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
@@ -41,12 +47,13 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center border border-0 border-bottom">
-                          A list item
-                          <span class="badge bg-primary rounded-pill">14</span>
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border border-0 border-bottom">
+                            A list item
+                            <span class="badge bg-primary rounded-pill">14</span>
                         </li>
-                        
-                      </ul>
+
+                    </ul>
                 </div>
             </div>
         </div>
@@ -56,7 +63,7 @@
 
 
 
-    
+
 
     <!----------- SIDEBAR -->
     <sidebar>
@@ -64,7 +71,7 @@
     </sidebar>
     <!------- MAIN -->
     <main>
-        <div class="container d-flex justify-content-center">
+        <div class="container d-flex justify-content-center mt-5">
             <div id="cardRow" class="row row row-cols-1 row-cols-md-5 g-4">
                 <!-- header -->
                 <!-- <div class="card mb-3 col-auto">
@@ -103,6 +110,7 @@
                         </div>
                     </div>
                 </div> -->
+
 
 
             </div>
