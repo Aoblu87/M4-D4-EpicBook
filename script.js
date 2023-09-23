@@ -1,22 +1,26 @@
 const inputSearch = document.querySelector('#inputSearch')
 const cardRow =document.querySelector('#cardRow')
 let cardCart = document.querySelectorAll('.cartButton')
-let cartCount = document.querySelector('#cartCount')
+let cartCount = document.querySelectorAll('.badge')
 let booksResult
 
 
 // funzione al click del carrello che aggiunge la quantita sul carrello principale
 
-cardCart.forEach(button =>{
-    let count=0
-    
-    button.addEventListener('click', event =>{
-        count++
-        console.log(count)
-        cartCount = document.querySelector('#cartCount').innerHTML = count
-
+    cardCart.forEach(button =>{
+        let count=0
+        
+        button.addEventListener('click', event =>{
+            count++
+            console.log(count)
+            cartCount =  document.querySelectorAll('.badge')
+            for (const cart of cartCount) {
+                cart.innerHTML = count
+                
+            }
+        })
     })
-})
+    
 
 
 // funzione di chiamata di tutti i libri
