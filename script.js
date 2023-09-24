@@ -19,28 +19,7 @@ cardCart.forEach(button =>{
         for (const cart of cartCount) {
             cart.innerHTML = count
             
-            // const cartItems = booksResult.map( result =>{ return /*html */`
-            //                 <li class="list-group-item d-flex justify-content-between align-items-center border border-0 border-bottom">
-            //                     <div class="card mb-3" style="max-width: 540px;">
-            //                         <div class="row g-0">
-            //                             <div class="col-md-4">
-            //                                 <img src="${result.img}" class="img-fluid rounded-start" alt="...">
-            //                             </div>
-            //                             <div class="col-md-8">
-            //                                 <div class="card-body">
-            //                                     <h5 class="card-title">Card title</h5>
-            //                                     <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-            //                                 </div>
-            //                             </div>
-            //                         </div>
-            //                     </div>  
-            //                     <span class="badge bg-primary rounded-pill"></span>
-            //                 </li>
-            
-            
-            // `})
-            // const cartList = document.querySelector('#cartList')
-            // cartList.innerHTML += cartItems
+           
             
         }
     })
@@ -64,8 +43,8 @@ function getBooks() {
         
         const renderedResult = booksResult.map(result => {
             return /*html*/`
-            <div class="col">
-            <div class="card h-100 border border-0 position-relative">
+            <div class="col-md-3">
+            <div class="card h-100 border border-0">
             
             <img src="${result.img}" class="card-img-top" alt="...">
             <div class="card-body">

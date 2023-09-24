@@ -6,6 +6,10 @@
 
 
 /* CARD */
+.card {
+    position: relative;
+}
+
 .img-container {
     padding-block-start: 1rem;
     padding-inline-end: 0;
@@ -33,22 +37,32 @@
 }
 
 .cart-overlay {
-    
-       visibility: hidden;
-        height: 3rem;
-        box-shadow: 0px -5px 8px -3px grey;
-        width: 9.4rem;
-        position: absolute;
-    inset: 192px 0 0px 45px;
-   
+
+    visibility: hidden;
+    height: 3rem;
+    box-shadow: 0px -5px 8px -3px grey;
+    position: absolute;
+    inset: 213px 0 0px 31px;
+
 
 }
 
-.cart-overlay button{
+.cart-overlay button {
     cursor: pointer;
 }
 
-.card:hover .cart-overlay{
-    
+.card:hover .cart-overlay {
+
     visibility: visible;
+}
+
+
+/* SHOPPING CART */
+
+.cart-quantity{
+    width: 2rem;
+}
+.list-group-numbered>.list-group-item::before {
+    content: counters(section, ".") " ";
+    margin-inline-end: 1rem;
 }
