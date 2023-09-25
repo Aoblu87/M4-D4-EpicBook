@@ -47,10 +47,11 @@ function getBooks() {
                 return /*html*/`
                             <div class="col-md-3">
                                 <div class="card-book_ card h-100 border border-0">
-            
-                                    <img src="${result.img}" class="card-img-top" alt="...">
+                                <a href="book.html?id=${result.asin}">
+                                <img src="${result.img}" class="card-img-top" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title text-center">${result.title}</h5>
+                                        <h5 class="card-title text-center"> <a href="artist.html?id=${result.asin}">
+                                        ${result.title}</h5>
                                         <p class="card-text text-center">${result.price}€</p>
                         
                                     </div>
