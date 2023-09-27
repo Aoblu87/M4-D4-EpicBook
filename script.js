@@ -3,92 +3,100 @@
 let inputSearch = document.querySelector('#inputSearch')
 let cardRow = document.querySelector('#cardRow')
 let addItems = document.querySelectorAll('.cartButton')
-let cartCount = document.querySelectorAll('.badge')
+let cartCount = document.querySelector('#cart-count')
+let totItem = document.querySelector('#tot-item')
+
+
+
 let booksResult =[]
 let renderedResult
 let books
+let count=0
+let countItem =0
 
-// funzione calcolo totale prezzo
 
 
 
-// console.log(sum);
-//     const totalPrice = bookSelected.reduce ((acc, curr ,i) =>{
-// console.log(acc,curr)
-//   return acc ;
-
-//     },0)
 
 
 
 // funzione al click del carrello che aggiunge la quantita sul carrello principale
 function addToCart (button){
     
-    let count=0
+    
 
     button.addEventListener('click', event =>{
         let cartList = document.querySelector('#cartList')
 
         const idBook = button.getAttribute('data-asin')
+       
         
         const bookSelected = booksResult.find( book => book.asin === idBook)
 
-        // if(idBook === bookSelected.asin)
-
-        // cartList.innerHTML= ''
+     count++
+     cartCount.innerHTML = count
+     console.log(count)
 
         
 
-        const totalCardCount = function totalCard () {
-            count++
-            console.log(count)
-            cartCount =  document.querySelectorAll('.badge')
-        for (const cart of cartCount) {
-            cart.innerHTML = count
+     let itemList =   /*html */`
+            <li class="list-item list-group-item d-flex justify-content-between align-items-center border border-bottom-1 p-1" data-id="${bookSelected.asin}">
+                <div class="card-book card border border-0">
+                    <div class="row row-cols-3 g-0 align-items-center">
+            
+                        <div class="col-md-3">
+                            <img src="${bookSelected.img}" class="product-img img-fluid " alt="">
+                        </div>
+                        <div class="col card-body d-flex flex-column justify-content-center align-items-end p-0">
+                             <h5 class="product-title card-title ml-1">${bookSelected.title}</h5>
+            
+                             <p class="product-price card-text">${bookSelected.price} €</p>
+                        </div>
+            
+                        <div class="col-md-3 d-flex align-items-center justify-content-center">
+                             <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-dash-lg"></i></button> 
+                             <span id="tot-item" class="badge text-bg-light bg-transparent">${countItem}</span>
+                             <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-plus-lg"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </li>        
+             `
+
+             cartList.innerHTML += itemList
+
+             const list = document.querySelectorAll('.list-item') 
+            const idList = list.getAttribute('data-id')
+             console.log(idList)
 
 
-
+    // for (const  of object) {
+        
+    // }
+             if( idList !== idBook ){
+                countItem = 1
+            }else{
+                countItem++
+                cartList.innerHTML = itemList
+               
+   
+            
         }
-    }
+    
+            // cartList.innerHTML= ''
 
-    totalCardCount()
+  
+    
 
-    const prices = bookSelected;
-
-let sum = 0
-for (const book of prices) {
-  sum += book.price;
-}
-console.lo
     
   
         
-         cartList.innerHTML +=   /*html */`
-                <li class="list-group-item d-flex justify-content-between align-items-center border border-bottom-1 p-1">
-                    <div class="card-book card border border-0">
-                        <div class="row row-cols-3 g-0 align-items-center">
-                
-                            <div class="col-md-3">
-                                <img src="${bookSelected.img}" class="product-img img-fluid " alt="">
-                            </div>
-                            <div class="col card-body d-flex flex-column justify-content-center align-items-end p-0">
-                                 <h5 class="product-title card-title ml-1">${bookSelected.title}</h5>
-                
-                                 <p class="product-price card-text">${bookSelected.price} €</p>
-                            </div>
-                
-                            <div class="col-md-3 d-flex align-items-center justify-content-center">
-                                 <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-dash-lg"></i></button> 
-                                 <span class="badge text-bg-light bg-transparent">${count}</span>
-                                 <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-plus-lg"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </li>        
-                 `
 
 
     })
+
+
+    
 }
 
 
@@ -140,9 +148,10 @@ function getBooks() {
             inputSearch = document.querySelector('#inputSearch')
             cardRow = document.querySelector('#cardRow')
             addItems = document.querySelectorAll('.cartButton')
-            cartCount = document.querySelectorAll('.badge')
 
             addItems.forEach(addToCart)
+
+            search(result.title)
 
         })
         .catch(error => console.log('error', error));
@@ -152,72 +161,19 @@ function getBooks() {
 getBooks()
 
 
+// funzione ricerca
 
-// function addToCart(title, price, asin, img) {
-//     const book = document.querySelector("#card-book_" + asin)
-//     let cartList = document.querySelector('#cartList')
-//     cartCount = document.querySelectorAll('.badge')
+// function search(title){
 
-//     let count = 0
-//     addItems.forEach(buttons => {
+//     if(title === inputSearch)
 
-//         let count = 0
-//         let totalPrice = 0
-//         buttons.addEventListener('click', () => {
-
-//             for (const buttonCart of buttons) {
-                
-            
-//                 count++
-//                 buttonCart.innerHTML = count
-            
-//             }
-                
+//     let showCard = 
 
 
 
 
 
-           
-//         }
-
-
-//         )
-//     })
-
-
-
-//     cartList.innerHTML += /*html */`
-//                 <li class="list-group-item d-flex justify-content-between align-items-center border border-0">
-//                     <div class="card-book card mb-3" style="max-width: 540px;">
-//                         <div class="row row-cols-3 g-0">
-                
-//                             <div class="col-md-2">
-//                                 <img src="${img}" class="product-img img-fluid rounded-start" alt="">
-//                             </div>
-//                             <div class="col card-body d-flex flex-column justify-content-center align-items-end p-0">
-//                                 <h5 class="product-title card-title fs-6 m-0">${title}</h5>
-                
-//                                 <p class="product-price card-text">${price}</p>
-//                             </div>
-                
-//                             <div class="col d-flex align-items-center justify-content-center">
-//                                 <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-dash-lg"></i></button> 
-//                                 <span class="badge text-bg-light bg-transparent">${count}</span>
-//                                 <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-plus-lg"></i></button>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </li>        
-//                 `
-
-
-
-
-//     const totale = document.querySelector("h3 span")
-//     totale.innerText = (Number(totale.innerText) + Number(price)).toFixed(2)
 // }
-
 
 
 

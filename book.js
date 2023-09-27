@@ -11,20 +11,20 @@ const bookCard = document.querySelector("#cardBook")
 
 function displayBook(data) {
     console.log(data.title)
-
-    const bookDetails = data.map(result => {
-        return /*html*/`
-        <div class="col d-flex">
-        <img src="${result.img}" class="img-fluid" alt="...">
+    console.log(data)
+    bookCard.innerHTML += 
+         /*html*/`
+        <div class="col-md-3 d-flex g-5">
+            <img src="${data.img}" class="img-fluid" alt="...">
         </div>
-        <div class="col">
-        <div class="row">
-            <div class="col d-flex ">
-                <h5 class="">${result.title}</h5>
-                <h6 class="">${result.price}</h6>
+        <div class="col d-flex flex-column p-5 g-5">
+        
+            <div class="col d-flex flex-column align-items-center">
+                <h5 class="f-6">${data.title}</h5>
+                <h6 class="">${data.price} €</h6>
         
             </div>
-            <div class="col">
+            <div class="col d-flex align-items-center">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                     data-bs-toggle="dropdown" aria-expanded="false">1</button>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -39,7 +39,7 @@ function displayBook(data) {
         
         
             </div>
-        </div>
+        
         </div>
                         
                         
@@ -47,11 +47,10 @@ function displayBook(data) {
         `
 
 
-        console.log(bookDetails)
+        
 
-    })
+    
 
-    bookCard.innerHTML += bookDetails.join('')
 
 }
 
