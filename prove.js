@@ -23,6 +23,14 @@ let booksResult = []
 let count = 0
 let countItem = 0
 let tot = 0
+let allPrice = []
+
+// SOMMA TOTALE CARRELLO
+
+
+function sumPrice(tot) {
+
+}
 
 // FUNZIONE CHE FA APPARIRE CONTEGGIO TOTALE SU CARRELLO MAIN
 
@@ -87,7 +95,6 @@ function showAllCards(books) {
 
 
 
-
 // ------------------------------------------------------------------------
 
 // MOSTRA LIBRO NEL CARRELLO
@@ -106,11 +113,15 @@ function showListCart(book) {
     
                      <p class="product-price card-text">${book.price} €</p>
                 </div>
-    
-                <div class="col-md-3 d-flex align-items-center justify-content-center">
-                     <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-dash-lg"></i></button> 
-                     <span id="tot-item" class="badge text-bg-light bg-transparent">${countItem}</span>
-                     <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-plus-lg"></i></button>
+                <div class="col d-flex flex-column">
+                    <div class= "col d-flex">
+                        <i class="bi bi-x-circle"></i>
+                    </div>
+                    <div class="col-md-3 d-flex align-items-center justify-content-center">
+                        <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-dash-lg"></i></button> 
+                        <span id="tot-item" class="badge text-bg-light bg-transparent">${countItem}</span>
+                        <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-plus-lg"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,14 +138,14 @@ function addToCart(button) {
 
     button.addEventListener('click', event => {
 
+        // conteggio del numeri di articoli totali nel carrello
         count++
         cartCount.innerHTML = count
-        // console.log(count)
+
 
         // Recupero libro dal bottone
         const idBook = button.getAttribute('data-asin')
         const bookSelected = booksResult.find(book => book.asin === idBook)
-        // console.log(bookSelected)
 
 
         // bookInTheCart.push(bookSelected) 
@@ -147,13 +158,21 @@ function addToCart(button) {
         // }
         // bookInTheCart= [{...bookSelected, ...addQuantity}]
 
+
+        // creo array di tutti i libri selezionati
         bookInTheCart.push(bookSelected)
 
-        tot += bookInTheCart.price
+        // creo array con tutti i prezzi selezionati
+        allPrice.push(bookSelected.price)
+        tot = allPrice.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue
+        }, 0);
+        // mostro risultati nel dom
+        totalPrice.innerHTML = `${tot}€`
 
-        totalPrice.innerHTML= tot
-        console.log(bookInTheCart)
-        // countBook(bookInTheCart)
+
+        console.log(tot)
+
 
         // Mostro libro selezionato nel carrello
         showListCart(bookSelected)
