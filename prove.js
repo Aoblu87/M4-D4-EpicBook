@@ -10,13 +10,52 @@ let cartCount = document.querySelector('#cart-count')
 let totItem = document.querySelector('#tot-item')
 // CARRELLO
 const cartList = document.querySelector('#cartList')
+// OGGETTO DI LIBRI AGGIUNTI AL CARRELLO
+let bookInTheCart = []
+let addQuantity = []
 
+// TOTALE PREZZO CARRELLO
+const totalPrice = document.querySelector('#totalPrice')
 
 
 
 let booksResult = []
 let count = 0
 let countItem = 0
+let tot = 0
+
+// FUNZIONE CHE FA APPARIRE CONTEGGIO TOTALE SU CARRELLO MAIN
+
+function showBadgeTotal(count) {
+
+    if (count > 0) {
+        cartCount.classList.add('visible')
+    }
+
+}
+
+// MOSTRO SOLO UN LIBRO E AUMENTO LA QUANTITA' NEL CONTATORE SE LO STESSO
+function countBook(books) {
+    for (const button of addItems) {
+
+        const idBook = button.getAttribute('data-asin')
+
+        if (books.find(book => book.asin === idBook)) {
+
+            cartList.innerHTML = ''
+            countItem++
+
+        } else {
+            console.log('ciao')
+
+        }
+    }
+
+}
+
+
+
+
 
 // MOSTRO TUTTE LE CARDS
 function showAllCards(books) {
@@ -42,18 +81,18 @@ function showAllCards(books) {
         `
     }).join('')
     cardRow.innerHTML += renderedResult
-    
-    }
-    
-    
-    
+
+}
+
+
+
 
 
 // ------------------------------------------------------------------------
 
 // MOSTRA LIBRO NEL CARRELLO
 
-function showListCart(book){
+function showListCart(book) {
     let itemList =   /*html */`
     <li class="list-item list-group-item d-flex justify-content-between align-items-center border border-bottom-1 p-1" data-id="${book.asin}">
         <div class="card-book card border border-0">
@@ -78,36 +117,61 @@ function showListCart(book){
     </li>        
      `
 
-cartList.innerHTML += itemList
+    cartList.innerHTML += itemList
 
 }
 
 // --------------------------------------------------------------------
-// AGGIUNGI LIBRO AL CARRELLO
+// AddEventListeners SUI BOTTONI PER AGGIUNGERE LIBRI
 function addToCart(button) {
 
     button.addEventListener('click', event => {
-        
-        // Recupero libro dal bottone
-        const idBook = button.getAttribute('data-asin')
-        const bookSelected = booksResult.find(book => book.asin === idBook)
-
-        showListCart(bookSelected)
-
-
 
         count++
         cartCount.innerHTML = count
-        console.log(count)
+        // console.log(count)
+
+        // Recupero libro dal bottone
+        const idBook = button.getAttribute('data-asin')
+        const bookSelected = booksResult.find(book => book.asin === idBook)
+        // console.log(bookSelected)
+
+
+        // bookInTheCart.push(bookSelected) 
+        // bookInTheCart =[{
+        //     ...bookSelected,
+        //     quantity:1
+        // }]
+        // addQuantity={
+        //     quantity:1
+        // }
+        // bookInTheCart= [{...bookSelected, ...addQuantity}]
+
+        bookInTheCart.push(bookSelected)
+
+        tot += bookInTheCart.price
+
+        totalPrice.innerHTML= tot
+        console.log(bookInTheCart)
+        // countBook(bookInTheCart)
+
+        // Mostro libro selezionato nel carrello
+        showListCart(bookSelected)
+
+        // Mostro conteggio del badge carrello nel main
+        showBadgeTotal(count)
 
 
 
-      
-        
+
+
+
+
+
 
         const list = document.querySelector('.list-item')
         const idList = list.getAttribute('data-id')
-        console.log(idList)
+        // console.log(idList)
 
 
         // for (const  of object) {
@@ -146,13 +210,14 @@ function getBooks() {
             // mostro le card
             showAllCards(booksResult)
 
+            // Varibili per identificare nodi
             inputSearch = document.querySelector('#inputSearch')
             cardRow = document.querySelector('#cardRow')
             addItems = document.querySelectorAll('.cartButton')
 
+            // Per ogni bottone carrello aggiungo Add EventListeners
             addItems.forEach(addToCart)
 
-            // search(result.title)
         })
         .catch(error => console.log('error', error));
 }
