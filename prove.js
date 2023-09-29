@@ -14,6 +14,9 @@ const cartList = document.querySelector('#cartList')
 let bookInTheCart = []
 let addQuantity = []
 
+// TASTO CANCELLA ARTICOLO
+let cancelItem = document.querySelector('#cancel-item')
+
 // TOTALE PREZZO CARRELLO
 const totalPrice = document.querySelector('#totalPrice')
 
@@ -25,12 +28,13 @@ let countItem = 0
 let tot = 0
 let allPrice = []
 
-// SOMMA TOTALE CARRELLO
+// CANCELLA ARTICOLO DA CARRELLO
+// function cancelItem(){
 
 
-function sumPrice(tot) {
+// }
 
-}
+
 
 // FUNZIONE CHE FA APPARIRE CONTEGGIO TOTALE SU CARRELLO MAIN
 
@@ -113,11 +117,11 @@ function showListCart(book) {
     
                      <p class="product-price card-text">${book.price} €</p>
                 </div>
-                <div class="col d-flex flex-column">
-                    <div class= "col d-flex">
+                <div class="col d-flex flex-column align-items-end pb-5">
+                    <div id="cancel-item" class= "col d-flex">
                         <i class="bi bi-x-circle"></i>
                     </div>
-                    <div class="col-md-3 d-flex align-items-center justify-content-center">
+                    <div class="col-md-7 d-flex align-items-center justify-content-enter pt-3">
                         <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-dash-lg"></i></button> 
                         <span id="tot-item" class="badge text-bg-light bg-transparent">${countItem}</span>
                         <button class="btn btn-outline-secondary p-0" type="button"><i class="bi bi-plus-lg"></i></button>
@@ -141,27 +145,25 @@ function addToCart(button) {
         // conteggio del numeri di articoli totali nel carrello
         count++
         cartCount.innerHTML = count
-
-
+        
+        
+        
         // Recupero libro dal bottone
         const idBook = button.getAttribute('data-asin')
         const bookSelected = booksResult.find(book => book.asin === idBook)
+        
+        console.log(bookInTheCart.title)
 
+        if (bookInTheCart.quantity === 1) {
+            
+            bookInTheCart.quantity++
 
-        // bookInTheCart.push(bookSelected) 
-        // bookInTheCart =[{
-        //     ...bookSelected,
-        //     quantity:1
-        // }]
-        // addQuantity={
-        //     quantity:1
-        // }
-        // bookInTheCart= [{...bookSelected, ...addQuantity}]
-
-
-        // creo array di tutti i libri selezionati
-        bookInTheCart.push(bookSelected)
-
+        } else { // creo array di tutti i libri selezionati
+            bookInTheCart.push({
+                ...bookSelected,
+                quantity: 1
+            })
+        }
         // creo array con tutti i prezzi selezionati
         allPrice.push(bookSelected.price)
         tot = allPrice.reduce((accumulator, currentValue) => {
@@ -233,6 +235,8 @@ function getBooks() {
             inputSearch = document.querySelector('#inputSearch')
             cardRow = document.querySelector('#cardRow')
             addItems = document.querySelectorAll('.cartButton')
+            cancelItem = document.querySelector('#cancel-item')
+
 
             // Per ogni bottone carrello aggiungo Add EventListeners
             addItems.forEach(addToCart)
